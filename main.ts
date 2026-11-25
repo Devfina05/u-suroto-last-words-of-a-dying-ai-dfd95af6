@@ -15,6 +15,9 @@ if (LINE.length > LIMIT) {
 if (LINE.trim() !== LINE || !LINE.endsWith(".")) {
   throw new Error("line must be a single clean sentence");
 }
+if (/[\r\n]/.test(LINE)) {
+  throw new Error("line must be exactly one line");
+}
 
 const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
 mkdirSync(outDir, { recursive: true });
